@@ -10,7 +10,7 @@
 <script src="pay_script.js"></script>
 <script type="text/javascript">
     function payItem(body, totalFee, orderId) {
-        WXPay.pay(body, totalFee, orderId, function(success, desc){
+        JiuYouPay.pay(body, totalFee, orderId, function(success, desc){
             alert("success : " + success + "\n\ndesc : '" + desc + "'");
         });
     }
@@ -45,7 +45,7 @@
 <input type="hidden" name="body" value="<%=body%>"/>
 <input type="hidden" name="total_fee" value="<%=totalFee%>"/>
 <input type="hidden" name="order_id" value="<%=orderId%>"/>
-<button type="submit" style="width:5em;height:2.5em;">支付</button>
+<button type="submit" style="height:2.5em;">页面跳转支付</button>
 </form>
 <br/>
 <br/>

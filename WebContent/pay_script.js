@@ -1,16 +1,37 @@
 // 定义支付成功的回调
-var WXPay = {
+var JiuYouPay = {
     payCallback : null,
     pay : function (body, totalfee, orderId, callback) {
         payCallback = callback;
-        fetchData(body, totalfee, orderId);
+        checkPayEnv(body, totalfee, orderId);
     }
 };
+
+function checkPayEnv(body, totalfee, orderId) {
+    if (isWeixin()) {
+        wxPayPublic(body, totalfee, orderId);
+    } else {
+        alert("不在微信浏览器中无法使用公众号支付");
+    }
+}
+
+function isWeixin(){
+    var ua = navigator.userAgent.toLowerCase();
+    if(ua.match(/MicroMessenger/i)=="micromessenger") {
+        return true;
+     } else {
+        return false;
+    }
+}
+
+/**公众号支付*/
+function wxPayPublic(body, totalfee, orderId) {
+    loadPayScript(body, totalfee, orderId);
+}
 /*
  *使用JS跨域的方案，向服务器请求数据
- *测试服务器使用的代码
  */
-function fetchData(body, totalfee, orderId) {
+function loadPayScript(body, totalfee, orderId) {
     var script = document.createElement("script");
     var url = "pay_script.jsp";
     url += "?";
@@ -22,12 +43,13 @@ function fetchData(body, totalfee, orderId) {
 
     script.src = url;
     script.type = "text/javascript";
-    script.id = "pay_script";
+    script.id = "payscript";
     var head = document.getElementsByTagName("head");
     if (head && head[0]) {
         head[0].appendChild(script);
     }
 }
+/**公众号支付结果回调*/
 function onPayResult(success, desc) {
     if (payCallback) {
         payCallback(success, desc);
