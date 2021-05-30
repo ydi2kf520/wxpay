@@ -7,7 +7,8 @@ public class PayParams {
     /** 公众号ID */
     private String appId;
     /** 时间戳 */
-    private String timpStamp = String.valueOf(System.currentTimeMillis() / 1000);
+    private String timpStamp = String
+            .valueOf(System.currentTimeMillis() / 1000);
     /** 随机字符串 */
     private String nonceStr = WXPayUtil.generateNonceStr();
     /** 订单详情扩展字符串 */
@@ -88,8 +89,29 @@ public class PayParams {
 
     @Override
     public String toString() {
-        return "PayParams [appId=" + appId + ", timpStamp=" + timpStamp + ", nonceStr=" + nonceStr + ", packageExt="
-                + packageExt + ", prepayId=" + prepayId + ", signType=" + signType + ", paySign=" + paySign + ", error="
-                + error + "]";
+        return "PayParams [appId=" + appId + ", timpStamp=" + timpStamp
+                + ", nonceStr=" + nonceStr + ", packageExt=" + packageExt
+                + ", prepayId=" + prepayId + ", signType=" + signType
+                + ", paySign=" + paySign + ", error=" + error + "]";
+    }
+
+    public String toJson() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("{");
+        builder.append("\"appId\"").append(":").append("\"").append(appId != null ? appId : "").append("\"");
+        builder.append(",");
+        builder.append("\"timpStamp\"").append(":").append("\"").append(timpStamp != null ? timpStamp : "").append("\"");
+        builder.append(",");
+        builder.append("\"nonceStr\"").append(":").append("\"").append(nonceStr != null ? nonceStr : "").append("\"");
+        builder.append(",");
+        builder.append("\"packageExt\"").append(":").append("\"").append(packageExt != null ? packageExt : "").append("\"");
+        builder.append(",");
+        builder.append("\"prepayId\"").append(":").append("\"").append(prepayId != null ? prepayId : "").append("\"");
+        builder.append(",");
+        builder.append("\"signType\"").append(":").append("\"").append(signType != null ? signType : "").append("\"");
+        builder.append(",");
+        builder.append("\"paySign\"").append(":").append("\"").append(paySign != null ? paySign : "").append("\"");
+        builder.append("}");
+        return builder.toString();
     }
 }

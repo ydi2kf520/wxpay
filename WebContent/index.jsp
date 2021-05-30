@@ -7,11 +7,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>公众号支付测试</title>
-<script src="pay_script.js"></script>
+<script src="jquery.js"></script>
+<script src="9yousdk.js"></script>
 <script type="text/javascript">
     function payItem(body, totalFee, orderId) {
-        JiuYouPay.pay(body, totalFee, orderId, function(success, desc){
-            alert("success : " + success + "\n\ndesc : '" + desc + "'");
+        var sdk = window.JYSDK;
+        sdk.pay(body, totalFee, orderId, function(success, desc){
+            alert("success : " + success + "\n\n" + "desc : " + desc);
         });
     }
 </script>
