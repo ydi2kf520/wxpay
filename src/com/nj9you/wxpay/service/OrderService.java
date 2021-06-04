@@ -13,7 +13,7 @@ public interface OrderService {
      * @param totalFee 总金额
      * @return
      */
-    public PayParams generatePayParams(String body, String merOrderId, String totalFee);
+    public PayParams generatePayParams(String body, String merOrderId, String totalFee, String openId);
 
     /**
      * 订单查询

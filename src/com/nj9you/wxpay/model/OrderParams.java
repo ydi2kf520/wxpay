@@ -4,32 +4,34 @@ package com.nj9you.wxpay.model;
  * 统一下单参数
  * 
  * @author Administrator
- *
+ * 
  */
 public class OrderParams {
-    /**商家名称-销售商品类目 如:腾讯-游戏 */
+    /** 商家名称-销售商品类目 如:腾讯-游戏 */
     private String body;
 
-    /**商户订单号*/
+    /** 商户订单号 */
     private String outTradeNo;
 
-    /**自定义参数，可以为终端设备号(门店号或收银设备ID)，PC网页或公众号内支付可以传"WEB"*/
+    /** 自定义参数，可以为终端设备号(门店号或收银设备ID)，PC网页或公众号内支付可以传"WEB" */
     private String deviceInfo;
 
-    /**标价币种*/
+    /** 标价币种 */
     private String feeType = "CNY";
 
-    /**订单总金额，单位为分*/
+    /** 订单总金额，单位为分 */
     private String totalFee;
 
-    /**终端IP, APP和网页支付提交用户端ip，Native支付填调用微信支付API的机器IP。*/
+    /** 终端IP, APP和网页支付提交用户端ip，Native支付填调用微信支付API的机器IP。 */
     private String createIp;
 
-    /**异步接收微信支付结果通知的回调地址，通知url必须为外网可访问的url，不能携带参数。*/
+    /** 异步接收微信支付结果通知的回调地址，通知url必须为外网可访问的url，不能携带参数。 */
     private String notifyUrl;
 
-    /**交易类型*/
+    /** 交易类型 */
     private String tradeType = "JSAPI";
+
+    private String openId;
 
     public String getBody() {
         return body;
@@ -95,11 +97,21 @@ public class OrderParams {
         this.tradeType = tradeType;
     }
 
+    public String getOpenId() {
+        return openId;
+    }
+
+    public void setOpenId(String openId) {
+        this.openId = openId;
+    }
+
     @Override
     public String toString() {
-        return "OrderParams [body=" + body + ", outTradeNo=" + outTradeNo + ", deviceInfo=" + deviceInfo + ", feeType="
-                + feeType + ", totalFee=" + totalFee + ", createIp=" + createIp + ", notifyUrl=" + notifyUrl
-                + ", tradeType=" + tradeType + "]";
+        return "OrderParams [body=" + body + ", outTradeNo=" + outTradeNo
+                + ", deviceInfo=" + deviceInfo + ", feeType=" + feeType
+                + ", totalFee=" + totalFee + ", createIp=" + createIp
+                + ", notifyUrl=" + notifyUrl + ", tradeType=" + tradeType
+                + ", openId=" + openId + "]";
     }
 
 }

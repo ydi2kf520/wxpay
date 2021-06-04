@@ -96,23 +96,28 @@ function execPay(appId, timeStamp, nonceStr, packageStr, signType, paySign) {
 }
 
 function preparePay(data) {
-    var jobj = eval("(" + data + ")");
-    var appId = jobj["appId"];
-    var timeStamp = jobj["timeStamp"];
-    var nonceStr = jobj["nonceStr"];
-    var packageStr = jobj["packageStr"];
-    var signType = jobj["signType"];
-    var paySign = jobj["paySign"];
-    execPay(appId, timeStamp, nonceStr, packageStr, signType, paySign);
+    try {
+        var jobj = eval("(" + data + ")");
+        var appId = jobj["appId"];
+        var timeStamp = jobj["timeStamp"];
+        var nonceStr = jobj["nonceStr"];
+        var packageStr = jobj["packageStr"];
+        var signType = jobj["signType"];
+        var paySign = jobj["paySign"];
+        execPay(appId, timeStamp, nonceStr, packageStr, signType, paySign);
+    } catch (e) {
+        onPayResult(false, "解析支付数据失败");
+    }
 }
 
-function requestWxPayArgs(body, total_fee, order_id) {
+function requestWxPayArgs(body, total_fee, order_id, open_id) {
     $.ajax({
         url : "pay_script.jsp",
         data : {
             "body" : body,
             "total_fee" : total_fee,
-            "order_id" : order_id
+            "order_id" : order_id,
+            "open_id" : open_id
         },
         type : "POST",
         success : function(data) {
@@ -141,10 +146,10 @@ function onPayResult(success, desc) {
     };
 
     // 支付
-    JouYouSdk.prototype.pay = function(body, total_fee, order_id, callback) {
+    JouYouSdk.prototype.pay = function(body, total_fee, order_id, open_id, callback) {
         this.callback = callback;
         if (isWeixin() || true) {
-            requestWxPayArgs(body, total_fee, order_id);
+            requestWxPayArgs(body, total_fee, order_id, open_id);
         } else {
             alert("非微信浏览器");
         }

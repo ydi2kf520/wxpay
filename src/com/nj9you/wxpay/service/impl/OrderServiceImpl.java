@@ -18,7 +18,7 @@ import com.nj9you.wxpay.utils.Utils;
 public class OrderServiceImpl implements OrderService {
 
     @Override
-    public PayParams generatePayParams(String body, String merOrderId, String totalFee) {
+    public PayParams generatePayParams(String body, String merOrderId, String totalFee, String openId) {
         String notifyUrl = WXProperty.get("notify_url");
         String deviceInfo = WXProperty.get("device_info");
         String nonce_str = WXPayUtil.generateNonceStr();
@@ -40,6 +40,7 @@ public class OrderServiceImpl implements OrderService {
         params.setOutTradeNo(platformOrder);
         params.setNotifyUrl(notifyUrl);
         params.setDeviceInfo(deviceInfo);
+        params.setOpenId(openId);
         try {
             params.setCreateIp(InetAddress.getLocalHost().getHostAddress());
         } catch (UnknownHostException e1) {
@@ -108,6 +109,7 @@ public class OrderServiceImpl implements OrderService {
             data.put("spbill_create_ip", params.getCreateIp());
             data.put("notify_url", params.getNotifyUrl());
             data.put("trade_type", params.getTradeType()); // 此处指定为扫码支付
+            data.put("open_id", params.getOpenId());
             Map<String, String> resp = wxpay.unifiedOrder(data);
             return resp;
         } catch (Exception e) {
