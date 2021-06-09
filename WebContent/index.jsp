@@ -6,7 +6,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
 <title>公众号支付测试</title>
+<style type="text/css">
+    html,body {
+        width:100%;
+        height:100%;
+        margin:0;
+        padding:0;
+    }
+</style>
 <script src="jquery.js"></script>
 <script src="9yousdk.js"></script>
 <script type="text/javascript">
@@ -15,6 +24,9 @@
         sdk.pay(body, totalFee, orderId, openId, function(success, desc) {
             alert("success : " + success + "\n\n" + "desc : " + desc);
         });
+    }
+    window.onload = function() {
+        loadGame("http://fish-h5.9you-nj.cn/QPFish/index.html", 0);
     }
 </script>
 </head>

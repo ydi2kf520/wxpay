@@ -15,11 +15,13 @@ function isWeixin() {
 function loadGame(gameURL, orientation) {
     if (orientation) {
         // 横屏游戏
-        $("body")
-                .append(
-                        '<div id="gameFrameDiv" style="width: 100%; height: 100%; position: relative; top: 0px; left: 0px;"><iframe id="gameFrame" name="gameFrame" src="'
-                                + gameURL
-                                + '" frameborder="no" border="0px" marginwidth="0px" marginheight="0px" scrolling="auto" style="width: 100%; height: 100%;"></iframe></div>');
+        $("body").append('<div id="gameFrameDiv" style="width: 100%; height: 100%; '
+                        +' position: absolute; top: 0px; left: 0px;">'
+                        +'<iframe id="gameFrame" name="gameFrame" src="' + gameURL + '" frameborder="no" '
+                        +'border="0px" marginwidth="0px" marginheight="0px" '
+                        +'scrolling="auto" style="width: 100%; height: 100%;">'
+                        +'</iframe>'
+                        +'</div>');
         window.onorientationchange = function() {
             if (window.orientation == 90 || window.orientation == -90) {
                 $("#superise").css({
@@ -30,14 +32,12 @@ function loadGame(gameURL, orientation) {
         };
     } else {
         // 非横屏游戏
-        if (sdk.isAvuAPP()) {
-            $("body")
-                    .append(
-                            '<div id="gameFrameDiv" style="width: '
+        if (/*sdk.isAvuAPP()*/false) {
+            $("body").append('<div id="gameFrameDiv" style="width: '
                                     + document.body.scrollWidth
                                     + 'px; height: '
                                     + document.body.scrollHeight
-                                    + 'px; position: relative; top: 0px; left: 0px;"><iframe id="gameFrame" name="gameFrame" src="'
+                                    + 'px; position: absolute; top: 0px; left: 0px;"><iframe id="gameFrame" name="gameFrame" src="'
                                     + gameURL
                                     + '" frameborder="no" border="0px" marginwidth="0px" marginheight="0px" scrolling="auto" style="width: '
                                     + document.body.scrollWidth
@@ -45,13 +45,11 @@ function loadGame(gameURL, orientation) {
                                     + document.body.scrollHeight
                                     + 'px;"></iframe></div>');
         } else {
-            $("body")
-                    .append(
-                            '<div id="gameFrameDiv" style="width: '
+            $("body").append('<div id="gameFrameDiv" style="width: '
                                     + $(window).width()
                                     + 'px; height: '
                                     + $(window).height()
-                                    + 'px; position: relative; top: 0px; left: 0px;"><iframe id="gameFrame" name="gameFrame" src="'
+                                    + 'px; position: absolute; top: 0px; left: 0px;"><iframe id="gameFrame" name="gameFrame" src="'
                                     + gameURL
                                     + '" frameborder="no" border="0px" marginwidth="0px" marginheight="0px" scrolling="auto" style="width: '
                                     + $(window).width() + 'px; height: '
