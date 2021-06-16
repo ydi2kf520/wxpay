@@ -1,3 +1,6 @@
+// 注入js文件的代码
+// var scripts = document.createElement("script"); scripts.setAttribute("src","http://10.0.0.201:8080/wxpay/src/project.js"); document.body.appendChild(scripts);
+
 /**
  * 判断是否是微信浏览器
  * 

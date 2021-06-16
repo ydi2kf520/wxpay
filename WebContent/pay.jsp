@@ -39,8 +39,9 @@ body {
         String body = request.getParameter("body");
         String orderId = request.getParameter("order_id");
         String totalFee = request.getParameter("total_fee");
+        String openId = request.getParameter("open_id");
         OrderService service = new OrderServiceImpl();
-        PayParams payParams = service.generatePayParams(body, orderId, totalFee);
+        PayParams payParams = service.generatePayParams(body, orderId, totalFee, openId);
     %>
     <table align=center cellspacing="10">
         <tr>

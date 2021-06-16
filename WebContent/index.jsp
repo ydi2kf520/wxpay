@@ -9,12 +9,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
 <title>公众号支付测试</title>
 <style type="text/css">
-    html,body {
-        width:100%;
-        height:100%;
-        margin:0;
-        padding:0;
-    }
+html,body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
 </style>
 <script src="jquery.js"></script>
 <script src="9yousdk.js"></script>
@@ -27,6 +27,20 @@
     }
     window.onload = function() {
         loadGame("http://fish-h5.9you-nj.cn/QPFish/index.html", 0);
+        // loadGame("lucyfish.html", 0);
+        document.getElementById("gameFrame").onload = function() {
+            console.log("iframe loaded");
+        };
+    }
+    function OnMessage(data) {
+        alert(data);
+    }
+    if (window.addEventListener) { // all browsers except IE before version 9
+        window.addEventListener("message", OnMessage, false);
+    } else {
+        if (window.attachEvent) { // IE before version 9
+            window.attachEvent("onmessage", OnMessage);
+        }
     }
 </script>
 </head>
